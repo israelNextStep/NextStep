@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NextStep</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #22c55e;
+      --dark: #0f172a;
+      --light: #f8fafc;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+      color: var(--dark);
+    }
+
+    header {
+      background: white;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .hero {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: auto;
+      opacity: 0.85;
+    }
+
+    .buttons {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover { background: #1d4ed8; }
+
+    .btn-secondary {
+      background: white;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .btn-secondary:hover { background: var(--primary); color: white; }
+
+    section.chat {
+      max-width: 900px;
+      margin: 60px auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .chat-header {
+      background: var(--primary);
+      color: white;
+      padding: 20px;
+      font-weight: 600;
+    }
+
+    .chat-messages {
+      padding: 20px;
+      height: 300px;
+      overflow-y: auto;
+      background: #f8fafc;
+    }
+
+    .message {
+      margin-bottom: 15px;
+      max-width: 70%;
+      padding: 12px 18px;
+      border-radius: 15px;
+      font-size: 0.95rem;
+    }
+
+    .message.user {
+      background: var(--primary);
+      color: white;
+      margin-left: auto;
+      border-bottom-right-radius: 5px;
+    }
+
+    .message.bot {
+      background: #e5e7eb;
+      color: var(--dark);
+      border-bottom-left-radius: 5px;
+    }
+
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 15px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .chat-input button {
+      background: var(--secondary);
+      color: white;
+      border: none;
+      padding: 0 25px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <!-- Remplace logo.png par ton vrai logo -->
+    <img src="nextstep-logo.png" alt="NextStep Logo">
+    NextStep
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Passe au niveau supérieur 🚀</h1>
+  <p>NextStep est une plateforme moderne pour accompagner, connecter et guider les jeunes porteurs de projets vers la réussite.</p>
+
+  <div class="buttons">
+    <a href="#chat" class="btn btn-primary">Commencer</a>
+    <a href="#chat" class="btn btn-secondary">Discuter</a>
+  </div>
+</section>
+
+<section class="chat" id="chat">
+  <div class="chat-header">Discussion NextStep</div>
+  <div class="chat-messages" id="messages">
+    <div class="message bot">Bienvenue sur NextStep 👋 Comment puis-je t'aider aujourd'hui ?</div>
+  </div>
+  <div class="chat-input">
+    <input type="text" id="input" placeholder="Écris ton message...">
+    <button onclick="sendMessage()">Envoyer</button>
+  </div>
+</section>
+
+<footer>
+  © 2025 NextStep — Construisons l’avenir ensemble
+</footer>
+
+<script>
+  function sendMessage() {
+    const input = document.getElementById('input');
+    const messages = document.getElementById('messages');
+
+    if (input.value.trim() === '') return;
+
+    const userMsg = document.createElement('div');
+    userMsg.className = 'message user';
+    userMsg.textContent = input.value;
+    messages.appendChild(userMsg);
+
+    const botMsg = document.createElement('div');
+    botMsg.className = 'message bot';
+    botMsg.textContent = "Merci pour ton message 👍 Un membre de NextStep te répondra bientôt.";
+
+    setTimeout(() => messages.appendChild(botMsg), 600);
+
+    input.value = '';
+    messages.scrollTop = messages.scrollHeight;
+  }
+</script>
+
+</body>
+</html>
